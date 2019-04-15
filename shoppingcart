@@ -1,0 +1,30 @@
+from tkinter import *
+
+class orderform:
+    def showpayment(self):
+        totalamounttopay = int(num1.get()) * float(num2.get())
+        blank.insert(showpayment)
+    def __init__(self):
+
+        root = Tk()
+        root.title('Order Processing Form')
+        Label(root, text="Customer ID").grid(row=0)
+        Label(root, text = 'Product Name').grid(row = 1)
+        Label(root, text = 'Price').grid(row = 2)
+        Label(root, text = 'Quantity').grid(row = 3)
+        Label(root, text = 'Order Total').grid(row = 4)
+        
+        Entry(root).grid(row=0, column = 2)
+        Entry(root).grid(row=1, column = 2)
+        num1 = Entry(root)
+        num2 = Entry(root)
+        blank = Entry(root)
+        Button(root, text = 'Add To Cart', command = self.showpayment).grid(row = 5, column = 2)
+        num1.grid(row=2, column = 2)
+        num2.grid(row=3, column = 2)
+        blank.grid(row=4, column = 2)
+
+        root.mainloop()
+    
+
+orderform()
