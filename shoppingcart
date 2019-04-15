@@ -1,38 +1,31 @@
 from tkinter import *
 
+class orderform:
+    def __init__(self):
 
-fields = 'Customer ID', 'Product Name', 'Product Price', 'Quantity', 'Total Cost'
+        root = Tk()
+        root.title('Order Processing Form')
+        Label(root, text="Customer ID").grid(row=0)
+        Label(root, text = 'Product Name').grid(row = 1)
+        Label(root, text = 'Price').grid(row = 2)
+        Label(root, text = 'Quantity').grid(row = 3)
+        Label(root, text = 'Order Total').grid(row = 4)
+        self.customerid = StringVar()
+        self.productname = StringVar()
+        self.productprice = StringVar()
+        self.productquantity = StringVar()
+        self.totalpayment = StringVar()
+        Entry(root, textvariable = self.customerid).grid(row=0, column = 2)
+        Entry(root, textvariable = self.productname).grid(row=1, column = 2)
+        Entry(root, textvariable = self.productprice).grid(row=2, column = 2)
+        Entry(root, textvariable = self.productquantity).grid(row=3, column = 2)
+        Entry(root, textvariable = self.totalpayment).grid(row=4, column = 2)
+        Button(root, text = 'Add To Cart', command = calculatetotal).grid(row = 5, column = 2)
+        
+        root.mainloop()
+    def caclulatetotal(self):
+        calculatetotal = int(self.productquantity.get()) * float(self.productprice.get())
+        totalpayment.insert(calculatetotal)
+        return calculatetotal
 
-
-def fetch(entries):
-   for entry in entries:
-      field = entry[0]
-      text  = entry[1].get()
-      print('%s: "%s"' % (field, text)) 
-
-
-def makeform(root, fields):
-   entries = []
-   for field in fields:
-      row = Frame(root)
-      lab = Label(row, width=15, text=field, anchor='w')
-      ent = Entry(row)
-      row.pack(side=TOP, fill=X, padx=5, pady=5)
-      lab.pack(side=LEFT)
-      ent.pack(side=RIGHT, expand=YES, fill=X)
-      entries.append((field, ent))
-   return entries
-
-if __name__ == '__main__':
-   root = Tk()
-   ents = makeform(root, fields)
-   root.bind('<Return>', (lambda event, e=ents: fetch(e)))   
-   b1 = Button(root, text='Add To Cart',
-          command=(lambda e=ents: fetch(e)))
-   b1.pack(side=LEFT, padx=5, pady=5)
-   b2 = Button(root, text='Complete Order', command=root.quit)
-   b2.pack(side=LEFT, padx=5, pady=5)
-
- 
-
-root.mainloop()
+orderform()
